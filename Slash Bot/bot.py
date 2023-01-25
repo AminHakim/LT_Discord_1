@@ -13,7 +13,7 @@ SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
 RANGE1 = os.getenv('RANGE1')
 RANGE2 = os.getenv('RANGE2')
 
-
+#test
 def run_discord_bot():
     intents = discord.Intents.default()
     intents.message_content = True
