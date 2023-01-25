@@ -29,10 +29,10 @@ print(f"Importing .env configuration...")
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
 load_dotenv()
-TOKEN = 'MTA2MjkwMjE2NzA4Nzg3NDA3OA.GdUV1R.I7KGyUu8-wkR5tKAsiUpemDLOlEypZzSbvbp08'
-SAMPLE_SPREADSHEET_ID = '1sNv7X_7Zy-8hEvafrs1E7-wpmgSmmzt0vYBe2Ywcqn8'
-SAMPLE_RANGE1 = 'Sheet1!A1:B'
-SAMPLE_RANGE2 = 'Sheet1!C1:D'
+TOKEN = os.getenv('DISCORD_TOKEN')
+SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
+RANGE1 = os.getenv('RANGE1')
+RANGE2 = os.getenv('RANGE2')
 
 
 def run_discord_bot():
@@ -80,8 +80,8 @@ async def testCommand(ctx, *args):
         body = {
             'values': valuesToWrite
         }
-        result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE1).execute()
-        result2 = sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=SAMPLE_RANGE2, valueInputOption='USER_ENTERED', body=body).execute()
+        result = sheet.values().get(spreadsheetId=SPREADSHEET_ID, range=RANGE1).execute()
+        result2 = sheet.values().update(spreadsheetId=SPREADSHEET_ID, range=RANGE2, valueInputOption='USER_ENTERED', body=body).execute()
         values = result.get('values', [])
 
         if not values:
